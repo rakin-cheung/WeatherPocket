@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.weatherpocket.android.R
 import com.weatherpocket.android.logic.model.PlaceResponse
+import com.weatherpocket.android.logic.model.PlaceResponse_CN
 
-class PlaceAdapter(private val fragment: Fragment,private val placeList: List<PlaceResponse.Place>):RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
+class PlaceAdapter(private val fragment: Fragment,private val placeList: List<PlaceResponse>):RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
     inner class ViewHolder(view: View):RecyclerView.ViewHolder(view){
         val placeName:TextView = view.findViewById(R.id.placeName)
         val placeAddress:TextView = view.findViewById(R.id.placeAddress)
@@ -24,7 +25,7 @@ class PlaceAdapter(private val fragment: Fragment,private val placeList: List<Pl
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val place = placeList[position]
         holder.placeName.text = place.name
-        holder.placeAddress.text = place.center
+        holder.placeAddress.text = place.descContent
     }
 
     override fun getItemCount() = placeList.size

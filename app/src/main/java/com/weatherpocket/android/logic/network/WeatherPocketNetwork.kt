@@ -1,7 +1,10 @@
 package com.weatherpocket.android.logic.network
 
 import android.content.res.Resources
+import android.util.Log
 import com.weatherpocket.android.R
+import com.weatherpocket.android.logic.model.PlaceResponse_CN
+import com.weatherpocket.android.logic.model.PlaceResponse_GB
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,10 +17,12 @@ import kotlin.coroutines.suspendCoroutine
 object WeatherPocketNetwork {
 
     //代理
-    private val placeService = ServiceCreator.create<PlaceService>()
+    private val placeService_CN = ServiceCreator.create<PlaceService>("LBS")
+    private val placeService_GB = ServiceCreator.create<PlaceService>("GOOGLE")
 
     //代理調用 PlaceService方法
-    suspend fun searchPlaces(query:String) = placeService.searchPlaces(query).await()
+    suspend fun searchPlaces_CN(query:String):PlaceResponse_CN = placeService_CN.searchPlaces_CN(query).await()
+    suspend fun searchPlaces_GB(query:String,lang:String):PlaceResponse_GB = placeService_GB.searchPlaces_GB(query,lang).await()
 
     private suspend fun <T> Call<T>.await():T{
         return suspendCoroutine { continuation ->

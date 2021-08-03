@@ -6,10 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.weatherpocket.android.logic.Repository
 import com.weatherpocket.android.logic.model.PlaceResponse
 
+
 class PlaceViewModel:ViewModel() {
     private val searchLiveData = MutableLiveData<String>()
 
-    val placeList = ArrayList<PlaceResponse.Place>()
+    val placeList = ArrayList<PlaceResponse>()
 
     val placeLiveData = Transformations.switchMap(searchLiveData){
         query -> Repository.searchPlaces(query)

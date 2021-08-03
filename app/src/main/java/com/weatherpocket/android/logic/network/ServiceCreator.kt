@@ -7,13 +7,31 @@ object ServiceCreator {
 
     private const val BASE_URL_LBS = "https://restapi.amap.com/"
     private const val BASE_URL_CAIYUN = "https://api.caiyunapp.com/"
+    private const val BASE_URL_GOOGLE = "https://maps.googleapis.com/"
 
-    private val retrofit = Retrofit.Builder()
+    private val retrofit_LBS = Retrofit.Builder()
         .baseUrl(BASE_URL_LBS)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun <T> create(serviceClass: Class<T>):T = retrofit.create(serviceClass)
+    private val retrofit_CAIYUN = Retrofit.Builder()
+        .baseUrl(BASE_URL_CAIYUN)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-    inline fun <reified T> create():T = create(T::class.java)
+    private val retrofit_GOOGLE = Retrofit.Builder()
+        .baseUrl(BASE_URL_GOOGLE)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    fun <T> create(serviceClass: Class<T>,apiName:String):T{
+        when(apiName){
+            "LBS" -> return retrofit_LBS.create(serviceClass)
+            "CAIYUN" -> return retrofit_CAIYUN.create(serviceClass)
+            "GOOGLE" -> return retrofit_GOOGLE.create(serviceClass)
+            else -> return retrofit_CAIYUN.create(serviceClass)
+        }
+    }
+
+    inline fun <reified T> create(apiName:String):T = create(T::class.java,apiName)
 }
