@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WeatherPocket</string>
+    <string name="search_hint">Please input the city name</string>
+    <string name="API_lang">en_US</string>
 </resources>

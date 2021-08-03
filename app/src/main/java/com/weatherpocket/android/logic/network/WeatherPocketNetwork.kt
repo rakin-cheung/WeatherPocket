@@ -1,5 +1,7 @@
 package com.weatherpocket.android.logic.network
 
+import android.content.res.Resources
+import com.weatherpocket.android.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

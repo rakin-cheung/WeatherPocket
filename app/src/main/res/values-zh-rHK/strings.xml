@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">口袋天氣</string>
+    <string name="search_hint">請輸入城市名</string>
+    <string name="API_lang">zh_TW</string>
+</resources>
