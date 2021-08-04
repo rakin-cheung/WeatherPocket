@@ -2,4 +2,5 @@
     <string name="app_name">口袋天气</string>
     <string name="search_hint">请输入城市名</string>
     <string name="API_lang">zh_CN</string>
+    <string name="forecast">预报</string>
 </resources>

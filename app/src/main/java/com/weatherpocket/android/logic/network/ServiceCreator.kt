@@ -33,5 +33,10 @@ object ServiceCreator {
         }
     }
 
-    inline fun <reified T> create(apiName:String):T = create(T::class.java,apiName)
+    fun <T> create(serviceClass: Class<T>):T{
+         return retrofit_CAIYUN.create(serviceClass)
+    }
+
+    inline fun <reified T> create(apiName: String):T = create(T::class.java,apiName)
+    inline fun <reified T> create():T = create(T::class.java)
 }

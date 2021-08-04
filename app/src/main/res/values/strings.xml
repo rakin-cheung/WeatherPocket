@@ -2,4 +2,10 @@
     <string name="app_name">WeatherPocket</string>
     <string name="search_hint">Please input the city name</string>
     <string name="API_lang">en_US</string>
+    <string name="forecast">Forecast</string>
+    <string name="lifeIndex">LifeIndex</string>
+    <string name="rheum">Rheum</string>
+    <string name="uv">UV</string>
+    <string name="dressing">Dressing</string>
+    <string name="carWashing">CarWashing</string>
 </resources>
