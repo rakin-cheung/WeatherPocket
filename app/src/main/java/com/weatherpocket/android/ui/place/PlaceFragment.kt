@@ -16,6 +16,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.weatherpocket.android.MainActivity
 import com.weatherpocket.android.R
 import com.weatherpocket.android.databinding.FragmentPlaceBinding
 import com.weatherpocket.android.databinding.PlaceItemBinding
@@ -42,7 +43,7 @@ class PlaceFragment:Fragment(), LifecycleObserver {
     fun onCreated(){
         activity?.lifecycle?.removeObserver(this)
 
-        if(viewModel.isPlaceSaved()){
+        if(activity is MainActivity && viewModel.isPlaceSaved()){
             val place = viewModel.getSavePlace()
             val intent = Intent(context,WeatherActivity::class.java).apply {
                 putExtra("location_lng",place.location.lng)
