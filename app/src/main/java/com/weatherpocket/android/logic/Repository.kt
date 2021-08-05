@@ -3,10 +3,8 @@ package com.weatherpocket.android.logic
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.weatherpocket.android.WeatherPocketApplication
-import com.weatherpocket.android.logic.model.PlaceResponse
-import com.weatherpocket.android.logic.model.PlaceResponse_CN
-import com.weatherpocket.android.logic.model.PlaceResponse_GB
-import com.weatherpocket.android.logic.model.Weather
+import com.weatherpocket.android.logic.dao.PlaceDao
+import com.weatherpocket.android.logic.model.*
 import com.weatherpocket.android.logic.network.WeatherPocketNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -87,7 +85,8 @@ object Repository {
     fun formatedList_CN(cnList:PlaceResponse_CN):List<PlaceResponse>{
         val showList:MutableList<PlaceResponse> = ArrayList<PlaceResponse>()
         for(cn in cnList.districts){
-            val place:PlaceResponse = PlaceResponse(cn.name,cn.adcode)
+            val location = cn.center.split(",")
+            val place = PlaceResponse(cn.name,cn.adcode, Location(location[0],location[1]))
             showList.add(place)
         }
         return showList
@@ -96,7 +95,9 @@ object Repository {
     fun formatedList_GB(gbList: PlaceResponse_GB):List<PlaceResponse>{
         val showList:MutableList<PlaceResponse> = ArrayList<PlaceResponse>()
         for(gb in gbList.results){
-            val place:PlaceResponse = PlaceResponse(gb.name,gb.address)
+            val lng = gb.geometry.location.lng.toString()
+            val lat = gb.geometry.location.lat.toString()
+            val place:PlaceResponse = PlaceResponse(gb.name,gb.address, Location(lng,lat))
             showList.add(place)
         }
         return showList
